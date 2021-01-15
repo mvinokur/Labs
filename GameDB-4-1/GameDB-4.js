@@ -11,8 +11,8 @@ var server_callback = function (request, response) {
         " </head>\n" +
         " <body>\n"
     );
-    db.all("SELECT * FROM GameDB_4", function(err, rows){
-    //db.all("SELECT * FROM GameDB_4 WHERE platform='Steam'", function (err, rows) {
+    //db.all("SELECT * FROM GameDB_4", function(err, rows){
+    db.all("SELECT * FROM GameDB_4 WHERE platform='Steam'", function (err, rows) {
 
     if (err) {
             response.write("<div style='font-size: 30px; color:red'>" + err + "</div>\n");
@@ -33,7 +33,7 @@ var server_callback = function (request, response) {
 db.all("SELECT name FROM sqlite_master WHERE type='table' AND name='GameDB_4';", function (err, rows) {
     if (err || rows.length == 0) {
         db.run("CREATE TABLE GameDB_4 (game TEXT NOT NULL, price integer NOT NULL, release_date TEXT NOT NULL, platform TEXT NOT NULL);", function (err) {
-            //fill here
+            //Заполнение
             var statement = db.prepare("INSERT INTO GameDB_4 VALUES(?, ?, ?, ?);")
             statement.run("Fallout", 35, "1994", "Bethesda Launcher");
             statement.run("Fallout 2", 45, "1996", "Bethesda Launcher");
