@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NodeJS+AJAX</title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+        var game_filter = "";
+        var price_filter_from = 0;
+        var price_filter_to = 100;
+
+        function readServer(url, data, callback) {
+            var req = new XMLHttpRequest();
+            req.onreadystatechange = function () {
+                if (req.readyState === 4) {//"loaded"
+                    if (req.status === 200) {//"OK"
+                        callback(undefined, req.responseText);
+                    } else {
+                        callback(new Error(req.status));
+                    }
+                }
+            };
+
+            req.open("POST", url, true);
+            req.setRequestHeader('Content-Type', 'application/json');
+            req.send(data);
+        }
+        function update() {
+            var filters = {};
+            filters.game = game_filter;
+            filters.price_from = price_filter_from;
+            filters.price_to = price_filter_to;
+            readServer("/get_table", JSON.stringify(filters), function (err, response) {
+                if (err) document.getElementById("res").innerHTML = err;
+                else {
+                    var temp = "";
+                    temp = "<table cellspacing=\"2\" border=\"1\" cellpadding=\"5\">\n";
+                    var rows = JSON.parse(response).table;
+                    for (var i = 0; i < rows.length; i++) {
+                        temp += "<tr><td>" + rows[i].game + "</td><td align=\"center\">" + rows[i].price + "$</td><td align=\"center\">" + rows[i].release_date + "</td><td align=\"center\">" + rows[i].platform +"</td></tr>\n";
+                    }
+                    temp += "</table>";
+                    document.getElementById("res").innerHTML = temp;
+                }
+            });
+        }
+
+        window.onload = function () {
+            var game_input = document.getElementById("game");
+            game_input.oninput = function () {
+                game_filter = game_input.value;
+                update();
+            };            
+            var fr_input = document.getElementById("from");
+            fr_input.oninput = function () {
+                price_filter_from = fr_input.value;
+                update();
+            };
+            var to_input = document.getElementById("to");
+            to_input.oninput = function () {
+                price_filter_to = to_input.value;
+                update();
+            };
+            update();
+        }
+    </script>
+</head>
+
+<body>
+    <p>
+        GameDB_4 from ./GameDB-4-2 SQLite.
+    </p>
+    <p>
+        Game Search<input id="game" type="text"> Game Price from: <input id="from"
+            type="number" value=0> to: <input id="to" type="number" value=100>$.
+    </p>
+    <p>
+        <span id="res" style="font-style: italic"></span>
+    </p>
+</body>
+
+</html>
