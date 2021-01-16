@@ -117,3 +117,4 @@ dist
 GameDB-1/out/production/GameDB/sql/game/db/GameDB.class
 GameDB-2-3/lib/h2-1.4.199.jar
 GameDB-2-3/lib/sqlite-jdbc-3.7.2.jar
+*.jar
