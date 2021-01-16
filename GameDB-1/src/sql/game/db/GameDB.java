@@ -51,7 +51,8 @@ public class GameDB {
 
             }
 
-            ResultSet rs = st.executeQuery("SELECT * from GameDB WHERE ((year < 2001)or(year > 2004))");
+            //ResultSet rs = st.executeQuery("SELECT * from GameDB");
+            ResultSet rs = st.executeQuery("SELECT * from GameDB WHERE (year > 2004)");
 
             while (rs.next()){
                 System.out.println(
