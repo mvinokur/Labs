@@ -5,19 +5,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameTable {
-
     private ResultSet result;
     private Statement st;
     private PreparedStatement insertSt;
     private PreparedStatement selPlatformSt;
     private PreparedStatement selPriceRangeSt;
 
-    public GameTable(Connection conn) throws SQLException {
+    public GameTable(Connection connect) throws SQLException {
         result = null;
-        insertSt = conn.prepareStatement("INSERT INTO GameTable VALUES(?, ?, ?, ?, ?);");
-        selPlatformSt = conn.prepareStatement("SELECT * FROM GameTable WHERE platform_id=?");
-        selPriceRangeSt = conn.prepareStatement("SELECT * FROM GameTable WHERE (price>=? AND price<=?);");
-        st = conn.createStatement();
+        insertSt = connect.prepareStatement("INSERT INTO GameTable VALUES(?, ?, ?, ?, ?);");
+        selPlatformSt = connect.prepareStatement("SELECT * FROM GameTable WHERE platform_id=?");
+        selPriceRangeSt = connect.prepareStatement("SELECT * FROM GameTable WHERE (price>=? AND price<=?);");
+        st = connect.createStatement();
     }
 
     public void insert(Game s) throws SQLException {

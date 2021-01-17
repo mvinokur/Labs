@@ -18,7 +18,7 @@ public class Main {
             System.out.println(" "+item.platform_id +" "+ item.title+"  "+item.price+"  "+item.release_date);
         }
         System.out.println();
-        /*
+
         //вывод по платформе
         for(Game item : s_tab.selectPlatform("2")){
             System.out.println("("+item.platform_id+") "+item.title+"  "+item.price+"  "+item.release_date);
@@ -28,7 +28,7 @@ public class Main {
         for(Game item : s_tab.selectPrice(60, 150)){
             System.out.println("("+item.platform_id+") "+item.title+"  "+item.price+"  "+item.release_date);
         }
-         */
+
         System.out.println();
         base.joinSelect();
 

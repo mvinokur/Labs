@@ -4,7 +4,6 @@ import sql.game.games.GameTable;
 import sql.game.platform.PlatformTable;
 
 public class GameDB {
-
     private Connection connect;
     private Statement st;
 
