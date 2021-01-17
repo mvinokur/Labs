@@ -258,7 +258,7 @@ public class GameDB {
         data_bridge.price = 120;
         data_bridge.release_date = 2077;
         data_bridge.store = "CyberPunkedSteam";
-
+        GamesDAO.create(data_bridge);
     }
 
 }

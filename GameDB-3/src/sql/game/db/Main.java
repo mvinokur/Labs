@@ -11,15 +11,15 @@ public class Main {
         db.selectAll();
 
         System.out.println(" ");
-        for(Game item : db.selectStore("Steam")){
+        for(Game item : db.selectStore("Xbox Live")){
             System.out.println(item.platform.owner+" "+item.store+"  "+item.title+"  "+item.price+"$  "+item.release_date);
         }
-        /*System.out.println(" ");
-        for(Game item : db.selectPrice(60, 120)){
-            System.out.println(item.platform.owner+" "+item.store+"  "+item.title+"  "+item.price+"$  "+item.release_date);
-        }*/
         System.out.println(" ");
-        for(Game item : db.selectOwner("Sony")){
+        for(Game item : db.selectPrice(60, 121)){
+            System.out.println(item.platform.owner+" "+item.store+"  "+item.title+"  "+item.price+"$  "+item.release_date);
+        }
+        System.out.println(" ");
+        for(Game item : db.selectOwner("Microsoft")){
             System.out.println(item.platform.owner+" "+item.store+"  "+item.title+"  "+item.price+"$  "+item.release_date);
 
         }
